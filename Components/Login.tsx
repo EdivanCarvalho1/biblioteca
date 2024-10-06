@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 const Login = () => {
@@ -10,7 +11,7 @@ const Login = () => {
       height={50}
       alt={''} />
       
-      <div className="w-full text-white bg-green-800 rounded-lg xl:p-0
+      <div className=" mt-5 w-full text-white bg-green-800 rounded-lg xl:p-0
       shadow border sm:max-w-md  border-green-500   ">
         <div className='flex flex-col md:space-y-6 sm:p-8 '>
           <h1 className="font-bold  text-xl md:text-2xl">

@@ -1,12 +1,23 @@
-import React from "react";
+'use client'
+
+import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
+import { fetchBooksByTitle } from "@/utils/api-call";
+import { BookCardProps } from "./BookCard";
+import { useState } from "react";
+import { usePathname } from 'next/navigation';
+import SearchButton from './SearchBar';
 
 type NavBarProps = {
-  page: string
-}
+  page: string;
+  setBooks: (books: BookCardProps[]) => void;
+};
 
-const NavBar = ({ page }: NavBarProps) => {
+const NavBar = ({ page, setBooks }: NavBarProps) => {
+
+  const path = usePathname();
+
   return (
     <header className="text-white flex bg-green-800 py-3 px-3 justify-between">
       <nav className="flex text-4xl">
@@ -17,24 +28,28 @@ const NavBar = ({ page }: NavBarProps) => {
           height={36}
         />
         <Link href="/">
-          <h1 className="py-2 px-2 font-bold">
-            Livraria
-          </h1>
+          <button className="py-3 px-2 font-bold">Livraria</button>
         </Link>
-        
       </nav>
+
       <nav className="flex">
-        <h1 className="m-3 p-1">Buscar</h1>
-        <input className="rounded-lg m-3 p-1 text-black" type="text" placeholder="Nome do Livro"></input>
-          {
-            page !== "" ? (
-              <Link className='m-3 p-1' href={"/" + page}>
-                {page.charAt(0).toUpperCase() + page.slice(1).toLowerCase()}
-              </Link>
-          ) : (
-              <Link className="m-3 p-1" href="/">Início</Link>
-            )
-          }
+
+        {
+          path === '/' && (
+            <SearchButton setBooks={setBooks} />
+
+          )
+        }
+
+        {page !== "" ? (
+          <Link className="m-3 p-2 hover:bg-white hover:text-green-800 hover:rounded-md" href={"/" + page}>
+            {page.charAt(0).toUpperCase() + page.slice(1).toLowerCase()}
+          </Link>
+        ) : (
+          <Link className="m-3 p-1" href="/">
+            Início
+          </Link>
+        )}
       </nav>
     </header>
   );

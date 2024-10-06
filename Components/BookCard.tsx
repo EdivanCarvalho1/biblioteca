@@ -9,33 +9,45 @@ export type BookCardProps = {
     genero: string,
     img: string,
     isbn: string,
-    disponibilidade: string
+    disponibilidade: string,
+    autor: string
 }
 
-const BookCard = () => {
-
-    const [books, setBooks] = useState<BookCardProps[]>([]);
-
-    const loadBooks = async () => {
-        const fetchedBooks = await fetchBooks();
-        setBooks(fetchedBooks);
-    };
-
-    useEffect(() => {
-        loadBooks();
-    }, []);
+type BookCardComponentProps = {
+    books: BookCardProps[];
+}
+const BookCard = ({ books }: BookCardComponentProps) => {
 
     return (
         <>
-            <div className="flex m-3 flex-wrap">
-                {books.map(book => (
-                    <div className="p-3 bg-slate-100 shadow-sm shadow-neutral-400 m-3" key={book.id}>
-                        <h2>{book.titulo}</h2>
-                        <p>Ano: {book.ano}</p>
-                        <p>Gênero: {book.genero}</p>
-                        <img src={book.img} alt={book.titulo} />
-                        <p>ISBN: {book.isbn}</p>
-                        <p>Disponibilidade: {book.disponibilidade}</p>
+            <div className="grid gap-4 m-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                {books.map((book) => (
+                    <div
+                        className="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 m-3 transform hover:-translate-y-1"
+                        key={book.id}
+                    >
+                        <img
+                            className="align-center h-48 rounded-t-lg mb-4"
+                            src={book.img}
+                            alt={book.titulo}
+                        />
+                        <div className="flex flex-col items-start">
+                            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                                {book.titulo}
+                            </h2>
+                            <p className="text-sm text-gray-600 mb-1"><span className="font-bold">Autor:</span> {book.autor}</p>
+                            <p className="text-sm text-gray-600 mb-1"><span className="font-bold">Ano Lançamento:</span>  {book.ano}</p>
+                            <p className="text-sm text-gray-600 mb-1"><span className="font-bold">Gênero</span>  {book.genero}</p>
+                            <p className="text-sm text-gray-600 mb-1"><span className="font-bold">ISBN:</span>  {book.isbn}</p>
+                            <p
+                                className={`text-sm font-medium mt-2 ${book.disponibilidade === 'Disponível'
+                                    ? 'text-green-600'
+                                    : 'text-red-600'
+                                    }`}
+                            >
+                                {book.disponibilidade}
+                            </p>
+                        </div>
                     </div>
                 ))}
             </div>
