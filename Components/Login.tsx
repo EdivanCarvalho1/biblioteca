@@ -10,7 +10,7 @@ const Login = () => {
       height={50}
       alt={''} />
       
-      <div className="w-full bg-green-800 rounded-lg xl:p-0
+      <div className="w-full text-white bg-green-800 rounded-lg xl:p-0
       shadow border sm:max-w-md  border-green-500   ">
         <div className='flex flex-col md:space-y-6 sm:p-8 '>
           <h1 className="font-bold  text-xl md:text-2xl">
@@ -20,14 +20,14 @@ const Login = () => {
             <div >
               <label htmlFor="email" className="block p-1"
               >Email</label>
-              <input type="text" className='rounded-lg w-full  text-black border border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5' placeholder='emailexemplos@gmail.com'/>
+              <input type="text" className='rounded-lg w-full  text-white border border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5' placeholder='exemplo@gmail.com'/>
             </div>
 
             <div>
               <label htmlFor="password" className='block p-1'>
                 Senha
               </label>
-              <input type="password"  className="rounded-lg border font-semibold  border-green-500 text-black bg-green-600 placeholder:p-1 w-full p-1.5" />
+              <input type="password"  className="rounded-lg border font-semibold  border-green-500 text-white bg-green-600 placeholder:p-1 w-full p-1.5" />
             </div>
             <div>
               
@@ -37,7 +37,8 @@ const Login = () => {
               Entrar
             </button>
 
-            <p className='text-sm font-light text-green-200 flex '>Ainda não possui uma conta? <a href="#" className='hover:underlineflex '>Crie aqui</a></p>
+            <p className='text-sm font-light text-green-200 flex '>Ainda não possui uma conta?
+            <a href="#" className='ml-1 underline'>Crie aqui</a></p>
           </form>
         </div>
       </div>

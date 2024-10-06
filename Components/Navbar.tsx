@@ -16,9 +16,12 @@ const NavBar = ({ page }: NavBarProps) => {
           width={36}
           height={36}
         />
-        <h1 className="py-2 px-2 font-bold">
-          Livraria
-        </h1>
+        <Link href="/">
+          <h1 className="py-2 px-2 font-bold">
+            Livraria
+          </h1>
+        </Link>
+        
       </nav>
       <nav className="flex">
         <h1 className="m-3 p-1">Buscar</h1>
