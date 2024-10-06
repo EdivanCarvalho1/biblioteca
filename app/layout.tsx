@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import NavBar from "@/components/Navbar";
 import { Roboto } from '@next/font/google'
 
 export const metadata: Metadata = {
