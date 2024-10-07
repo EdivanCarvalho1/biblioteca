@@ -5,10 +5,10 @@ import React from 'react'
 const RegisterPage = () => {
   return (
     <>
-    <NavBar  page="" />
-   <Register/>
+      <NavBar page="" />
+      <Register />
     </>
-    
+
   )
 }
 
