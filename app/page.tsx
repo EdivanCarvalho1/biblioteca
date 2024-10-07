@@ -23,7 +23,7 @@ export default function Home() {
 
     <>
       <NavBar page="login" setBooks={setBooks} />
-      <BookCard books={books}/>
+      <BookCard books={books} />
     </>
   );
 }

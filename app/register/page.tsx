@@ -1,14 +1,14 @@
-import Register from '@/Components/Register'
-import NavBar from "@/Components/Navbar";
+import Register from '@/components/Register'
+import NavBar from "@/components/Navbar";
 import React from 'react'
 
 const RegisterPage = () => {
   return (
     <>
-    <NavBar  page="" />
-   <Register/>
+      <NavBar page="" />
+      <Register />
     </>
-    
+
   )
 }
 
