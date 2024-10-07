@@ -1,6 +1,6 @@
 
-import NavBar from "@/Components/Navbar";
-import RecoverAccount from "@/Components/RecoverAccount";
+import NavBar from "@/components/Navbar";
+import RecoverAccount from "@/components/RecoverAccount";
 import React from "react";
 
 const ForgotPasswordPage = () => {
