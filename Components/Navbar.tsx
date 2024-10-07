@@ -3,15 +3,13 @@
 import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
-import { fetchBooksByTitle } from "@/utils/api-call";
 import { BookCardProps } from "./BookCard";
-import { useState } from "react";
 import { usePathname } from 'next/navigation';
 import SearchButton from './SearchBar';
 
 type NavBarProps = {
   page: string;
-  setBooks: (books: BookCardProps[]) => void;
+  setBooks?: (books: BookCardProps[]) => void;
 };
 
 const NavBar = ({ page, setBooks }: NavBarProps) => {

@@ -1,7 +1,7 @@
 'use client'
 
 import BookCard from "@/components/BookCard";
-import NavBar from "@/components/Navbar";
+import NavBar from "@/components/NavBar";
 import React from "react";
 import { useState } from "react";
 import { BookCardProps } from "@/components/BookCard";
@@ -23,7 +23,7 @@ export default function Home() {
 
     <>
       <NavBar page="login" setBooks={setBooks} />
-      <BookCard books={books}/>
+      <BookCard books={books} />
     </>
   );
 }
