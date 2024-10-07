@@ -11,7 +11,7 @@ import SearchButton from './SearchBar';
 
 type NavBarProps = {
   page: string;
-  setBooks: (books: BookCardProps[]) => void;
+  setBooks?: (books: BookCardProps[]) => void;
 };
 
 const NavBar = ({ page, setBooks }: NavBarProps) => {
@@ -35,7 +35,7 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
       <nav className="flex">
 
         {
-          path === '/' && (
+          path === '/' && setBooks && (
             <SearchButton setBooks={setBooks} />
 
           )
