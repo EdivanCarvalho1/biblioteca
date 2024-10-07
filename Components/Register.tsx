@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Register = () => {
   return (
-    <div className=" bg-green-700 flex flex-col px-6 py-8 items-center  ">
+    <div className=" bg-green-700 flex flex-col px-6 py-8 items-center">
       <div className='mt-5 w-full text-white bg-green-800 rounded
        border sm:max-w-md  border-green-500'>
       <div className='flex flex-col md:space-y-6 sm:p-8'>
@@ -37,7 +38,10 @@ const Register = () => {
           <label className='p-1 block' htmlFor="confirmpassword">Confirme a senha</label>
           <input className="w-full rounded-lg border block border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5 " type="text" placeholder='******'></input>
         </div>
-        <button className='rounded-lg border w-full bg-green-600  hover:bg-green-700 p-1'>Criar</button>
+        <Link href="/login">
+        <button className='rounded-lg border w-full bg-green-600  hover:bg-green-700 p-1 mt-3'>Criar</button>
+        </Link>
+        
       </form>
       </div>
       </div>
