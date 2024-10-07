@@ -1,6 +1,6 @@
 
-import Login from "@/components/Login";
-import NavBar from "@/components/Navbar";
+import Login from "@/Components/Login";
+import NavBar from "@/Components/Navbar";
 import React from "react";
 
 const LoginPage = () => {
