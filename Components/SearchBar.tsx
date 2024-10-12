@@ -38,7 +38,7 @@ const SearchButton = ({ setBooks }: SearchButtonProps) => {
             />
             <button
                 type="submit"
-                className="text-white rounded-lg p-2 m-1"
+                className="text-white rounded-lg m-3 p-2  hover:bg-white hover:text-green-800"
             >
                 Buscar
             </button>

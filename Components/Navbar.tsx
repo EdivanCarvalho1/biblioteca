@@ -31,14 +31,12 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
       </nav>
 
       <nav className="flex">
-
         {
           path === '/' && setBooks && (
             <SearchButton setBooks={setBooks} />
 
           )
         }
-
         {page !== "" ? (
           <Link className="m-3 p-2 hover:bg-white hover:text-green-800 hover:rounded-md" href={"/" + page}>
             {page.charAt(0).toUpperCase() + page.slice(1).toLowerCase()}

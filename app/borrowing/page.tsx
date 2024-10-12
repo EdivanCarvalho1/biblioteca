@@ -1,15 +1,15 @@
-import Login from "@/components/Login";
+
+import Borrowing from "@/components/Borrowing";
 import NavBar from "@/components/Navbar";
 import React from "react";
 
-const LoginPage = () => {
-
+const ForgotPasswordPage = () => {
     return (
         <>
             <NavBar page="" />
-            <Login />
+            <Borrowing />
         </>
     )
 }
 
-export default LoginPage
+export default ForgotPasswordPage;
