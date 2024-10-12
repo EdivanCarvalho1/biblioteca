@@ -1,7 +1,6 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import { fetchBooks } from "@/utils/api-call";
-
+import React from "react";
+import Image from "next/image";
 export type BookCardProps = {
     id: number,
     titulo: string,
@@ -10,7 +9,7 @@ export type BookCardProps = {
     img: string,
     isbn: string,
     disponibilidade: string,
-    autor: string
+    autor: string 
 }
 
 type BookCardComponentProps = {
@@ -26,10 +25,12 @@ const BookCard = ({ books }: BookCardComponentProps) => {
                         className="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 m-3 transform hover:-translate-y-1"
                         key={book.id}
                     >
-                        <img
+                        <Image
                             className="align-center h-48 rounded-t-lg mb-4"
                             src={book.img}
                             alt={book.titulo}
+                            width={36}
+                            height={36}
                         />
                         <div className="flex flex-col items-start">
                             <h2 className="text-lg font-semibold text-gray-800 mb-2">

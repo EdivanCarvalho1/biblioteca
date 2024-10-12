@@ -33,7 +33,7 @@ const Login = () => {
             <div>
               
             </div>
-            <a href="#" className=' flex flex-row-reverse  hover:underline'>Esqueci a senha</a>
+            <a href="/forgotpassword" className=' flex flex-row-reverse  hover:underline'>Esqueci a senha</a>
             <button type='submit' className='hover:bg-green-600 bg-green-700 rounded-xl w-full p-1'>
               Entrar
             </button>

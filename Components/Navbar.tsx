@@ -31,6 +31,8 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
       </nav>
 
       <nav className="flex">
+        <Link href="/borrowing">
+        Teste</Link>
 
         {
           path === '/' && setBooks && (
