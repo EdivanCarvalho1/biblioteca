@@ -39,7 +39,7 @@ const Login = () => {
             </button>
 
             <p className='text-sm font-light text-green-200 flex '>Ainda não possui uma conta?
-            <a href="#" className='ml-1 underline'>Crie aqui</a></p>
+            <a href="register" className='ml-1 underline'>Crie aqui</a></p>
           </form>
         </div>
       </div>

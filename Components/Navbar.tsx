@@ -33,7 +33,7 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
       <nav className="flex">
 
         {
-          path === '/' && (
+          path === '/' && setBooks && (
             <SearchButton setBooks={setBooks} />
 
           )
