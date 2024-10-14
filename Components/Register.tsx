@@ -1,13 +1,16 @@
 "use client";
-import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createUser } from '@/utils/api-call';
+import { useRouter } from 'next/navigation';
+import { createAdmin } from '@/utils/api-call';
+
 export type UserProps = {
   nome: string;
   cpf: string;
   email: string;
   senha: number;
   sexo: string;
+  role: string;
 };
 
 export type AddressProps = {
@@ -20,6 +23,8 @@ export type AddressProps = {
 };
 
 const Register = () => {
+  const codigoBibliotecario = "123456789"
+
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
@@ -32,15 +37,25 @@ const Register = () => {
   const [bairro, setBairro] = useState("");
   const [complemento, setComplemento] = useState("");
   const [cep, setCep] = useState("");
+  const [codigo, setCodigo] = useState("")
+
+  const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Evita que a página seja recarregada
+    e.preventDefault();
     const user = {
       nome,
       cpf,
       email,
-      senha: password, // Aqui está a senha
+      senha: password,
       sexo,
+      role: codigo === codigoBibliotecario ? "admin" : "user",
     };
 
     const endereco = {
@@ -52,8 +67,13 @@ const Register = () => {
       cep,
     };
 
-    await createUser(user, endereco);
+    if (codigo === codigoBibliotecario) {
+      await createAdmin(user, endereco);
+    } else {
+      await createUser(user, endereco);
+    }
   };
+  if (!isMounted) return null;
 
   return (
     <div className="bg-green-700 flex flex-col px-6 py-8 items-center">
@@ -120,6 +140,13 @@ const Register = () => {
                   required
                 />
               </div>
+              <label className="p-1 block" htmlFor="">É Bibliotecário?</label>
+              <input
+                className="mt-1 border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5 rounded-lg w-full"
+                type="text"
+                placeholder="Código Bibliotecário"
+                onChange={(e) => setCodigo(e.target.value)}
+              />
               <div className="flex flex-col">
                 <label className="p-1 block" htmlFor="address">Endereço</label>
                 <div className="m-1">

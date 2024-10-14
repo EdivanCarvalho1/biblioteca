@@ -9,7 +9,7 @@ export type BookCardProps = {
     img: string,
     isbn: string,
     disponibilidade: string,
-    autor: string 
+    autor: string
 }
 
 type BookCardComponentProps = {

@@ -30,9 +30,9 @@ const SearchButton = ({ setBooks }: SearchButtonProps) => {
     return (
         <form onSubmit={handleSearchSubmit} className="flex">
             <input
-                className="rounded-lg m-4 p-1 text-black"
+                className="rounded-lg m-4 p-1 text-black w-72 placeholder:text-center"
                 type="text"
-                placeholder="Nome do Livro"
+                placeholder="nome do livro"
                 value={searchTerm}
                 onChange={handleSearchChange}
             />
