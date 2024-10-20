@@ -59,6 +59,7 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
           <button className="py-3 px-2 font-bold">Livraria</button>
         </Link>
       </nav>
+        
 
       <nav className="flex">
         {path === '/' && setBooks && (

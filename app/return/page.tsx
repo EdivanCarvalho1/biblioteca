@@ -1,5 +1,5 @@
-import Borrowing from "@/components/Borrowing";
 import NavBar from "@/components/Navbar";
+import Return from "@/components/Return";
 import React from "react";
 
 const LoginPage = () => {
@@ -7,7 +7,7 @@ const LoginPage = () => {
     return (
         <>
             <NavBar page="" />
-            <Borrowing />
+            <Return />
         </>
     )
 }
