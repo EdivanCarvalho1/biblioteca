@@ -5,6 +5,7 @@ import { loginUser } from '@/utils/api-call'
 import { loginAdmin } from '@/utils/api-call'
 import { useState } from 'react'
 import { useUserContext } from '@/utils/UserProvider'
+import { userInfo } from 'os'
 
 const Login = () => {
   const { setToken } = useUserContext();
@@ -17,15 +18,17 @@ const Login = () => {
     e.preventDefault();
     try {
       if (user === "user") {
-        let token = await loginUser(email, senha);
-        localStorage.setItem('token', token);
-        setToken(token)
-        console.log(token)
+        let userInfo = await loginUser(email, senha);
+        localStorage.setItem('token', userInfo.token); 
+        localStorage.setItem('role', userInfo.role);
+        setToken(userInfo.token)
+        console.log(userInfo.token)
       } else {
-        let token = await loginAdmin(email, senha);
-        localStorage.setItem('token', token);
-        setToken(token)
-        console.log(token)
+        let adminInfo = await loginAdmin(email, senha);
+        localStorage.setItem('token', adminInfo.token);
+        localStorage.setItem('role', adminInfo.role);
+        setToken(adminInfo.token)
+        console.log(adminInfo.token)
       }
 
     } catch (err) {

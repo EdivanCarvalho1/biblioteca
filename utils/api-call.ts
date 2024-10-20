@@ -128,7 +128,7 @@ export const loginUser = async (email: string, senha: string) => {
             email,
             senha,
         });
-        return response.data.token;
+        return response.data;
     } catch (error) {
         console.error('Erro ao fazer login', error);
         throw error;
@@ -141,7 +141,7 @@ export const loginAdmin = async (email: string, senha: string) => {
             email,
             senha,
         });
-        return response.data.token;
+        return response.data;
     } catch (error) {
         console.error('Erro ao fazer login', error);
         throw error;

@@ -26,9 +26,9 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
         try {
           const userInfo = await fetchUserInfo(token);
 
-          // Verifique se userInfo e userInfo.data estão definidos
+         
           if (userInfo && userInfo.nome) {
-            setUsuario({ nome: userInfo.nome }); // Ajuste para userInfo.nome
+            setUsuario({ nome: userInfo.nome });
           } else {
             console.error('Dados do usuário não encontrados', userInfo);
           }
