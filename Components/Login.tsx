@@ -1,38 +1,30 @@
 'use client'
-import React from 'react'
-import Image from 'next/image'
-import { loginUser } from '@/utils/api-call'
-import { loginAdmin } from '@/utils/api-call'
-import { useState } from 'react'
-import { useUserContext } from '@/utils/UserProvider'
-import { userInfo } from 'os'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { decodeToken, loginUser } from '@/utils/api-call';
+import { useUserContext } from '@/utils/UserProvider';
 
 const Login = () => {
-  const { setToken } = useUserContext();
+  const { setToken, setRole } = useUserContext();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      if (user === "user") {
-        let userInfo = await loginUser(email, senha);
-        localStorage.setItem('token', userInfo.token); 
-        localStorage.setItem('role', userInfo.role);
-        setToken(userInfo.token)
-        console.log(userInfo.token)
-      } else {
-        let adminInfo = await loginAdmin(email, senha);
-        localStorage.setItem('token', adminInfo.token);
-        localStorage.setItem('role', adminInfo.role);
-        setToken(adminInfo.token)
-        console.log(adminInfo.token)
-      }
+    setError('');
 
+    try {
+      const token = await loginUser(email, senha);
+      const decodedToken = decodeToken(token);
+      localStorage.setItem('token', token);
+      if (decodedToken) {
+        setRole(decodedToken.role);
+      }
+      setToken(token);
     } catch (err) {
       setError('Credenciais inválidas');
+      console.error(err);
     }
   };
 
@@ -66,10 +58,7 @@ const Login = () => {
                 required
               />
             </div>
-            <select className="rounded-lg border font-semibold border-green-500 text-white bg-green-600 placeholder:p-1 w-full p-1.5" onChange={(e) => setUser(e.target.value)}>
-              <option value="user">Usuário</option>
-              <option value="admin">Administrador</option>
-            </select>
+
 
             {error && <p className='text-red-500'>{error}</p>}
 

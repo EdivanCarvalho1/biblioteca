@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createAdmin } from '@/utils/api-call';
 
 export type UserProps = {
+  id: number;
   nome: string;
   cpf: string;
   email: string;
@@ -69,8 +70,10 @@ const Register = () => {
 
     if (codigo === codigoBibliotecario) {
       await createAdmin(user, endereco);
+      window.location.href = '/login';
     } else {
       await createUser(user, endereco);
+      window.location.href = '/login';
     }
   };
   if (!isMounted) return null;

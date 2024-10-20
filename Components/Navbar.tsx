@@ -8,6 +8,7 @@ import { useUserContext } from '@/utils/UserProvider';
 import SearchButton from './SearchBar';
 import { BookCardProps } from './BookCard';
 import { fetchUserInfo } from '@/utils/api-call';
+import { fetchAdminInfo } from '@/utils/api-call';
 
 type NavBarProps = {
   page: string;
@@ -17,18 +18,25 @@ type NavBarProps = {
 const NavBar = ({ page, setBooks }: NavBarProps) => {
   const path = usePathname();
   const { token } = useUserContext();
+  const [role, setRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [usuario, setUsuario] = useState<{ nome: string | null } | null>(null);
 
   useEffect(() => {
     const loadUserInfo = async () => {
       if (token) {
+        let userInfo;
         try {
-          const userInfo = await fetchUserInfo(token);
+          userInfo = await fetchUserInfo(token);
 
-         
-          if (userInfo && userInfo.nome) {
-            setUsuario({ nome: userInfo.nome });
+          if (!userInfo || !userInfo.role) {
+            userInfo = await fetchAdminInfo(token);
+          }
+
+          if (userInfo && userInfo.role) {
+            localStorage.setItem('role', userInfo.role);
+            setRole(userInfo.role);
+            setUsuario({ nome: userInfo.nome || 'Usuário' });
           } else {
             console.error('Dados do usuário não encontrados', userInfo);
           }
@@ -38,15 +46,16 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
       }
       setLoading(false);
     };
-
     loadUserInfo();
   }, [token]);
+
   if (loading) {
-    return null;
+    return null
   }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     window.location.href = '/login';
   };
 
@@ -59,12 +68,27 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
           <button className="py-3 px-2 font-bold">Livraria</button>
         </Link>
       </nav>
-        
+
 
       <nav className="flex">
         {path === '/' && setBooks && (
           <SearchButton setBooks={setBooks} />
         )}
+
+        {
+          role && role === 'admin' && (
+            <>
+              <Link href="/borrowing">
+                <button className="m-3 p-2 hover:bg-white hover:text-green-800 hover:rounded-md">Emprestimo</button>
+              </Link>
+              <Link href="/return">
+                <button className="m-3 p-2 hover:bg-white hover:text-green-800 hover:rounded-md">
+                  Devolução
+                </button>
+              </Link>
+            </>
+          )
+        }
         {token ? (
           <>
             <p className="m-3 p-2">{usuario?.nome}</p>
@@ -72,8 +96,6 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
               Logout
             </button>
           </>
-
-
         ) : (
           path === '/login' ? (
             <Link className="m-3 p-2  hover:bg-white hover:text-green-800 hover:rounded-md" href="/">
@@ -85,6 +107,9 @@ const NavBar = ({ page, setBooks }: NavBarProps) => {
             </Link>
           )
         )}
+
+
+
 
       </nav>
     </header>
