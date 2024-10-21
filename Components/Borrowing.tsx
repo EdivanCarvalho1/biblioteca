@@ -4,7 +4,7 @@ import { BookCardProps } from './BookCard';
 import { fetchAllUsers, fetchAvailableBooks, fetchAdminInfo } from '@/utils/api-call';
 import { useUserContext } from '@/utils/UserProvider';
 import { UserProps } from './Register';
-import { saveEmprestimo } from '@/utils/api-call';
+import { saveEmprestimo, saveReserva } from '@/utils/api-call';
 
 export type EmprestimoProps = {
   idLivro: number;
@@ -19,6 +19,7 @@ const Borrowing = () => {
   const [idLivro, setIdLivro] = useState('');
   const [idUsuario, setIdUsuario] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [modalidade, setModalidade] = useState('');
 
   const fetchAllBooks = async () => {
     if (token) {
@@ -57,10 +58,10 @@ const Borrowing = () => {
         senha: userPassword
       };
 
-      if (token !== null) {
+      if (token !== null && modalidade === 'Emprestimo') {
         const result = await saveEmprestimo(token, emprestimo);
-      } else {
-        console.log("Token is null");
+      } else if (token !== null && modalidade === 'Reserva') {
+        const result = await saveReserva(token, emprestimo);
       }
 
     } catch (error) {
@@ -107,7 +108,7 @@ const Borrowing = () => {
                 }
               </select>
               <div>
-                <label htmlFor="email" className="block p-1">Email</label>
+                <label htmlFor="email" className="block p-1">Senha do Usuário</label>
                 <input
                   type="password"
                   className='rounded-lg w-full text-white border border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5'
@@ -116,6 +117,12 @@ const Borrowing = () => {
                   onChange={(e) => setUserPassword(e.target.value)}
                   required
                 />
+              </div>
+              <div className='pt-3'>
+                <select className='rounded-lg w-full text-white border border-green-500 bg-green-600 placeholder:text-slate-200 placeholder:p-1 p-1.5' onChange={(e) => setModalidade(e.target.value)}>
+                  <option value={"Emprestimo"} selected>Empréstimo</option>
+                  <option value={"Reserva"}>Reserva</option>
+                </select>
               </div>
             </div>
             <div className='pt-3'>

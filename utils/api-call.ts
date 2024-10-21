@@ -223,6 +223,22 @@ export const saveEmprestimo = async (token: string, emprestimo: EmprestimoProps)
         }
     }
 }
+
+export const saveReserva = async (token: string, emprestimo: EmprestimoProps) => {
+    if (token) {
+        try {
+            const response = await axios.post('http://localhost:8080/reserva/reservar', emprestimo, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return alert("Reserva realizada com sucesso!");
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const decodeToken = (token: string) => {
     if (!token) return null;
 
